@@ -17,7 +17,7 @@ public class Question_02_23 {
 
         double neededGalon = distance / milesPerGalon ;
 
-        System.out.println("The cost of driving is $" + neededGalon * pricePerGalon);
+        System.out.println("The cost of driving is $" + Math.floor((neededGalon * pricePerGalon) * 100) /100.0 );
 
     }
 }
