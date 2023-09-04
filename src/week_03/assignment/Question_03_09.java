@@ -39,6 +39,6 @@ public class Question_03_09 {
         else if (isbn == 0)
             System.out.println("The ISBN-10 number is 0" + user + (checksum % 11));
         else
-            System.out.println("The ISBN-10 number is " + user + (checksum % 11));
+            System.out.println("The ISBN-10 number is " + user + "" + (checksum % 11));
     }
 }
