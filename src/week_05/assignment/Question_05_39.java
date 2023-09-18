@@ -1,18 +1,30 @@
 package week_05.assignment;
 
+import java.util.Scanner;
+
 public class Question_05_39 {
     public static void main(String[] args) {
-        double commision = 0;
-        double salesAmount = 30000;
-        double salary = 5000;
+        Scanner input = new Scanner(System.in);
+        double commission = 0.0;
+        double balance, salesAmount ;
 
-        while (commision + salary < 30_000) {
-            commision = 0;
-            commision += 5000 * 0.08;
-            commision += 5000 * 0.10;
-            commision += (salesAmount - 10000) * 0.12;
-            salesAmount += 0.01;
+        System.out.print("Enter the commission sought: ");
+        double commissionSought = input.nextDouble();
+
+        for (salesAmount = 0.01; commission < commissionSought; salesAmount += 0.01) {
+            balance = commission = 0.0;
+
+            if (salesAmount >= 10000.01)
+                commission += (balance = salesAmount - 10000) * 0.12;
+
+            if (salesAmount >= 5000.01)
+                commission += (balance -= balance - 5000) * 0.10;
+
+            if (salesAmount >= 0.01)
+                commission += balance * 0.08;
         }
-        System.out.printf("Minimum sales to earn $30,000 : %3.2f" , salesAmount);
+
+        System.out.printf(
+                "Minimum sales to earn $%.0f: $%.0f\n", commissionSought, salesAmount);
     }
 }
