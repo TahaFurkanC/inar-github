@@ -5,125 +5,146 @@ import java.util.Scanner;
 public class Question_08_09 {
     public static void main(String[] args) {
 
-        String[][] array = new String[3][3];
-
-        for (int i = 0; i < array.length; i++) {
-            for (int j = 0; j < array[i].length; j++) {
-                array[i][j] = " ";
-            }
-        }
-        boolean isGameOver = false;
-
-        int whoseTurn = 0; // mod0 for X, mod1 for 0
-        while (!isGameOver) {
-
-            displayTable(array);
-            placeGamerChoice(array, whoseTurn);
-
-            if (isWin(array, whoseTurn)) {
-                isGameOver = true;
-                System.out.println((whoseTurn % 2 == 0 ? "X" : "O") + " player won");
-            } else if (isDraw(array)) {
-                isGameOver = true;
-                System.out.println("Its draw.Play again!!");
-            }
-            whoseTurn++;
-
-        }
-    }
-
-
-    public static void placeGamerChoice(String[][] array, int whoseTurn) {
         Scanner input = new Scanner(System.in);
-        String token = (whoseTurn % 2 == 0 ? "X" : "O");
 
-        System.out.print("Enter a row (0, 1, or 2) for player " + (whoseTurn % 2 == 0 ? "X: " : "O: "));
-        int row = input.nextInt();
-        System.out.print("Enter a column (0, 1, or 2) for player " + (whoseTurn % 2 == 0 ? "X: " : "O: "));
-        int col = input.nextInt();
+        char[][] matrix = new char[3][3];
 
-        array[row][col] = token;
-    }
-
-
-    public static void displayTable(String[][] m) {
-        System.out.println("\n-------------");
-        for (int i = 0; i < m.length; i++) {
-            for (int j = 0; j < m[i].length; j++) {
-                System.out.print("| " + m[i][j] + " ");
-            }
-            System.out.println("|\n-------------");
-        }
-    }
-
-    public static boolean isWin(String[][] array, int whoseTurn) {
-        String token = (whoseTurn % 2 == 0 ? "X" : "O");
-        return (checkRow(array, token) || checkColumn(array, token) || checkDiagonal(array, token));
-    }
-
-    public static boolean checkRow(String[][] array, String token) {
-        for (int i = 0; i < array.length; i++) {
-            int count = 0;
-            for (int j = 0; j < array.length; j++) {
-
-                if (array[i][j] == token) {
-                    count++;
-                }
-            }
-            if (count == 3) {
-                return true;
+        for (int row = 0; row < matrix.length; row++) {
+            for (int column = 0; column < matrix[row].length; column++) {
+                matrix[row][column] = ' ';
             }
         }
-        return false;
-    }
 
-    public static boolean checkColumn(String[][] array, String token) {
-        for (int j = 0; j < array.length; j++) {
-            int count = 0;
-            for (int i = 0; i < array.length; i++) {
-
-                if (array[i][j] == token) {
-                    count++;
-                }
-            }
-            if (count == 3) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public static boolean checkDiagonal(String[][] array, String token) {
         int count = 0;
-        for (int i = 0; i < array.length; i++) {
-            if (array[i][i] == token) {
+
+        printTable(matrix);
+
+        do{
+            int row;
+            int column;
+
+            if(count % 2 == 0){
+                System.out.print("Enter a row (0, 1, 2) for X player : ");
+                row = input.nextInt();
+
+                System.out.print("Enter a column(0, 1, 2) for X player : ");
+                column = input.nextInt();
+
+            }else{
+
+                System.out.print("Enter a row (0, 1, 2) for O player : ");
+                row = input.nextInt();
+
+                System.out.print("Enter a column(0, 1, 2) for O player : ");
+                column = input.nextInt();
+
+            }
+
+            if(matrix[row][column] == ' '){
+                if(count % 2 == 0){
+                    matrix[row][column] = 'X';
+                }else{
+                    matrix[row][column] = 'O';
+                }
+
                 count++;
             }
-        }
-        if (count == 3) {
-            return true;
+
+            printTable(matrix);
+
+        }while(!isWin(matrix) && count <= 9);
+
+        if(isWin(matrix)){
+            if(count % 2 != 0){
+                System.out.println("X player win");
+            }else{
+                System.out.println("O player win");
+            }
+        }else{
+            System.out.println("Nobody wins");
         }
 
-        count = 0;
-        for (int i = 0, j = array.length - 1; i < array.length; i++, j--) {
-            if (array[i][j] == token) {
-                count++;
+
+    }
+
+    public static boolean isWin(char[][] matrix) {
+        return isWinRow(matrix) || isWinColumn(matrix) || isWinDiagonal(matrix);
+    }
+
+    public static boolean isWinDiagonal(char[][] matrix) {
+        return isWinDiagonalFromLeft(matrix) || isWinDiagonalFromRight(matrix);
+    }
+
+    public static boolean isWinDiagonalFromRight(char[][] matrix) {
+        boolean st = false;
+        for (int i = 1, j = 1; i < matrix.length; i++, j--) {
+            st = true;
+            if(matrix[i][j] == ' ' || matrix[0][2] != matrix[i][j]){
+                st = false;
+                break;
             }
         }
-        if (count == 3) {
-            return true;
+
+        return st;
+    }
+
+    public static boolean isWinDiagonalFromLeft(char[][] matrix) {
+        boolean st = false;
+        for (int i = 1; i < matrix.length; i++) {
+            st = true;
+            if(matrix[i][i] == ' ' || matrix[0][0] != matrix[i][i]){
+                st = false;
+                break;
+            }
         }
+
+        return st;
+    }
+
+    public static boolean isWinRow(char[][] matrix) {
+        for (int i = 0; i < matrix.length; i++) {
+            boolean st = true;
+            for (int j = 1; j < matrix[i].length; j++) {
+                if(matrix[i][j] == ' ' || matrix[i][0] != matrix[i][j]){
+                    st = false;
+                    break;
+                }
+            }
+            if(st){
+                return st;
+            }
+        }
+
         return false;
     }
 
-    public static boolean isDraw(String[][] array) {
-        for (int i = 0; i < array.length; i++) {
-            for (int j = 0; j < array.length; j++) {
-                if (array[i][j] == " ") {
-                    return false;
+    public static boolean isWinColumn(char[][] matrix) {
+        for (int i = 0; i < matrix[0].length; i++) {
+            boolean st = true;
+            for (int j = 1; j < matrix.length; j++) {
+                if(matrix[j][i] == ' ' || matrix[0][i] != matrix[j][i]){
+                    st = false;
+                    break;
                 }
             }
+            if(st){
+                return st;
+            }
         }
-        return true;
+
+        return false;
+    }
+
+
+
+    public static void printTable(char[][] matrix) {
+        System.out.println("--------------");
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[i].length; j++) {
+                System.out.print("| " + matrix[i][j] + " ");
+            }
+            System.out.println("|");
+            System.out.println("--------------");
+        }
     }
 }
