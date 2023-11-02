@@ -10,7 +10,9 @@ public class RectangleTest {
         System.out.println("Height : " + rectangle1.height);
         System.out.println("Area : " + rectangle1.getArea());
         System.out.println("Perimeter : " + rectangle1.getPerimeter());
+
         System.out.println();
+
         System.out.println("--Rectangle2--");
         System.out.println("Width : " + rectangle2.width);
         System.out.println("Height : " + rectangle2.height);
