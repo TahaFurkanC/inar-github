@@ -13,24 +13,5 @@ public class RegularPolygonTest {
         System.out.println("Third regular polygon perimeter is : " + object3.getPerimeter() +
                 "\tarea is : " + object3.getArea());
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        System.out.println(object1.getN());
-        object1.setN(5);
-        System.out.println(object1.getN());
-
     }
 }
