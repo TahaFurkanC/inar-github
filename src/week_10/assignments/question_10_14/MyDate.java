@@ -44,4 +44,9 @@ public class MyDate {
         this.month = calendar.get(GregorianCalendar.MONTH);
         this.day = calendar.get(GregorianCalendar.DAY_OF_MONTH);
     }
+
+    @Override
+    public String toString() {
+        return getDay() + "." + getMonth() + "." + getYear();
+    }
 }

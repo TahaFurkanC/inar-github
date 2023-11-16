@@ -73,4 +73,12 @@ public class Account {
     public void deposit(double amount){
         this.balance += amount;
     }
+
+    @Override
+    public String toString() {
+        return "Account ID      : " + this.getId() +
+                "\nDate created    : " + this.getDateCreated() +
+                "\nBalance         : " + this.getBalance() +
+                "\n------------------------------";
+    }
 }
