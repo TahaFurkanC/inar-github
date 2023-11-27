@@ -5,6 +5,7 @@ public class IllegalTriangleException extends Exception{
        super();
     }
     public IllegalTriangleException(String message){
+
         super(message);
     }
 }
