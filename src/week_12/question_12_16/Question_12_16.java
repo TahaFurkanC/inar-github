@@ -22,8 +22,6 @@ public class Question_12_16 {
             System.exit(2);
         }
 
-
-
         try {
             ArrayList<String> text = new ArrayList<>();
             // Create input and output files

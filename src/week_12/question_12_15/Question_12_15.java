@@ -10,7 +10,7 @@ import static java.nio.file.Files.write;
 
 public class Question_12_15 {
     public static void main(String[] args) throws Exception{
-        File file = new File("Question_12_15_.txt");
+        File file = new File("C:\\Users\\HP\\workspace\\inar-java\\src\\week_12\\question_12_15\\Question_12_15.txt");
         if(file.exists()){
             System.out.println("There is already a file that has this name");
             System.exit(1);
