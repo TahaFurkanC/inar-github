@@ -1,6 +1,6 @@
-package week_13.question_13_05;
+package week_13.question_13_06;
 
-public class Circle extends GeometricObject{
+public class Circle extends GeometricObject {
     private double radius;
 
 
