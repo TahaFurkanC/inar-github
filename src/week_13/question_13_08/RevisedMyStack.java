@@ -39,13 +39,9 @@ public class RevisedMyStack implements Cloneable{
     }
 
     @Override
-    public RevisedMyStack clone() {
-        try {
+    public RevisedMyStack clone() throws CloneNotSupportedException {
             RevisedMyStack sheep = (RevisedMyStack) super.clone();
             sheep.list = (ArrayList<Object>) list.clone();
             return sheep;
-        } catch (CloneNotSupportedException e) {
-            throw new AssertionError();
-        }
     }
 }

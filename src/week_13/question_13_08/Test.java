@@ -1,7 +1,7 @@
 package week_13.question_13_08;
 
 public class Test {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws CloneNotSupportedException {
         RevisedMyStack myStack1 = new RevisedMyStack();
         System.out.println("Pushing the number 4, 5, and 6 to 1st stack...");
         myStack1.push(4);
